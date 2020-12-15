@@ -13,9 +13,6 @@ const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
 
-//6
-// create a calculator
-
 //2
 class Calculator {
     //3
@@ -42,7 +39,13 @@ class Calculator {
     }
 
     appendNumber(number) {
- 
+        //9 - to make sure calc is working
+        // this.currentOperand = number
+
+        //use toString because we want our numbers to be appended and not added
+        //also want the '.' to be added only once
+        if (number === "." && this.currentOperand.includes(".")) return
+        this.currentOperand = this.currentOperand.toString() + number.toString()
     }
 
     chooseOperation(operation) {
@@ -54,6 +57,23 @@ class Calculator {
     }
 
     updateDisplay() {
-
+        // 8 - to make sure calc is working
+        this.currentOperandTextElement.innerText = this.currentOperand
     }
 }
+
+
+//6
+// create a calculator
+// pass in everything from constructor
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
+
+//7 select number buttons // loop through btns and add event listener for each whenver we click on the btn
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        //append whatever text is inside btn that's clicked
+        calculator.appendNumber(button.innerText) 
+        // display the values
+        calculator.updateDisplay()
+    })
+})
