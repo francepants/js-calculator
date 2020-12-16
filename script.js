@@ -48,8 +48,15 @@ class Calculator {
         this.currentOperand = this.currentOperand.toString() + number.toString()
     }
 
+    //11
     chooseOperation(operation) {
-
+        if (this.currentOperand === '') return  //13
+        if (this.previousOperand !== '' ) { //14 will update variables as we need
+            this.compute()
+        }
+        this.operation = operation
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ''
     }
 
     compute() {
@@ -59,6 +66,8 @@ class Calculator {
     updateDisplay() {
         // 8 - to make sure calc is working
         this.currentOperandTextElement.innerText = this.currentOperand
+        //12
+        this.previousOperandTextElement.innerText = this.previousOperand
     }
 }
 
@@ -73,6 +82,16 @@ numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         //append whatever text is inside btn that's clicked
         calculator.appendNumber(button.innerText) 
+        // display the values
+        calculator.updateDisplay()
+    })
+})
+
+//10 choose operation
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        //append whatever text is inside btn that's clicked
+        calculator.chooseOperation(button.innerText) 
         // display the values
         calculator.updateDisplay()
     })
