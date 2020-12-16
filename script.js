@@ -34,8 +34,9 @@ class Calculator {
         this.operation = undefined //since there are no operations since it was cleared
     }
 
+    //18
     delete() {
-
+        this.currentOperand = this.currentOperand.toString().slice(0, -1)
     }
 
     appendNumber(number) {
@@ -133,5 +134,11 @@ equalsButton.addEventListener('click', button => {
 //17
 allClearButton.addEventListener('click', button => {
     calculator.clear()
+    calculator.updateDisplay()
+})
+
+//19
+deleteButton.addEventListener('click', button => {
+    calculator.delete()
     calculator.updateDisplay()
 })
