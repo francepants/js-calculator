@@ -59,8 +59,35 @@ class Calculator {
         this.currentOperand = ''
     }
 
+    //16
     compute() {
-
+        let computation
+        const prev = parseFloat(this.previousOperand)
+        const current = parseFloat(this.currentOperand)
+        if (isNaN(prev) || isNaN(current)) return //this is to make sure the calc is complete - not just 23 * =
+        switch (this.operation){
+            case '+': 
+                computation = prev + current
+                break
+            
+            case '-': 
+                computation = prev - current
+                break
+            
+            case '*': 
+                computation = prev * current
+                break
+            
+            case '/': 
+                computation = prev / current
+                break
+            
+            default: 
+                return
+        }
+        this.currentOperand = computation
+        this.operation = undefined
+        this.previousOperand = ''
     }
 
     updateDisplay() {
@@ -95,4 +122,10 @@ operationButtons.forEach(button => {
         // display the values
         calculator.updateDisplay()
     })
+})
+
+//15 
+equalsButton.addEventListener('click', button => {
+    calculator.compute()
+    calculator.updateDisplay()
 })
