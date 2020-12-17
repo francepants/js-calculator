@@ -28,7 +28,7 @@ class Calculator {
 
     //4
     // define functions that our calc will perform
-    clear(){
+    clear() {
         this.currentOperand = ''
         this.previousOperand = ''
         this.operation = undefined //since there are no operations since it was cleared
@@ -91,11 +91,53 @@ class Calculator {
         this.previousOperand = ''
     }
 
+    //21 - helper function
+    getDisplayNumber(number){
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split('.')[0]) //want to get the integer values before the decimal
+        const decimalDigits = stringNumber.split('.')[1] // numbers after decimal
+        let integerDisplay
+        if (isNaN(integerDigits)) { //decimal is NaN
+            integerDisplay = ''
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', {maximumFractionDigits: 0}) //dont want any decimals after
+        }
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
+            return integerDisplay
+        }
+
+
+        // const floatNumber = parseFloat(number) // decimal can't be parsed into a float
+        // if (isNaN(floatNumber)) return '' // if float # is not a number, return an empty string
+        // return floatNumber.toLocaleString('en')
+    }
+
+
     updateDisplay() {
         // 8 - to make sure calc is working
-        this.currentOperandTextElement.innerText = this.currentOperand
+        // this.currentOperandTextElement.innerText = this.currentOperand
+
+        //22
+        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand)
+
+        //20
+        // if (this.operation !== null) {
+        //     this.previousOperandTextElement.innerText = 
+        //         `${this.previousOperand} ${this.operation}`
+        // }
+
+        //23
+        if (this.operation != null) {
+            this.previousOperandTextElement.innerText = 
+                `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+        } else {
+            this.previousOperandTextElement.innerText = ''
+        }
+
         //12
-        this.previousOperandTextElement.innerText = this.previousOperand
+        // this.previousOperandTextElement.innerText = this.previousOperand
     }
 }
 
@@ -129,6 +171,7 @@ operationButtons.forEach(button => {
 equalsButton.addEventListener('click', button => {
     calculator.compute()
     calculator.updateDisplay()
+    
 })
 
 //17
@@ -142,3 +185,4 @@ deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
