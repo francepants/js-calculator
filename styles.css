@@ -70,14 +70,23 @@ body {
     font-size: 2.5rem;
 }
 
-
+/* title */
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* random color - button */
+.rand-color-btn {
+    cursor: pointer;
+    /* font-size: 2rem; */
+    border: 1px solid white;
+    color: white;
+    outline: none;
+    background-color: rgba(43, 40, 40, 0.95);
 }
 
 /* random color */
-
-
 .rand-color {
   background: white;
   padding: auto;
