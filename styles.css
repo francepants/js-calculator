@@ -9,9 +9,13 @@
 body {
     padding: 0;
     margin: 0;
+    display: grid;
+    place-items: center;
+    /* playing with css background options */
     /* background: linear-gradient(to right, #c9cbff, #eff8ff); */
-    background-image: linear-gradient(#c9cbff, white, #c9cbff);
+    /* background-image: linear-gradient(#c9cbff, white, #c9cbff); */
     /* background-image: repeating-linear-gradient(#c9cbff, #eff8ff 10%, #c9cbff 20%) */
+    /* background-image: radial-gradient(circle, #eff8ff, #c9cbff, #eff8ff); */
 }
 
 .calc-grid {
@@ -36,7 +40,7 @@ body {
 }
 
 .calc-grid > button:hover {
-    background-color: rgba(180, 170, 240, 0.90);
+    background-color: rgba(241, 240, 245, 0.9);
 }
 
 .span-two {
@@ -64,4 +68,26 @@ body {
 .output .current-operand {
     color: rgba(255, 255, 255, .95);
     font-size: 2.5rem;
+}
+
+
+h1 {
+    font-size: 2.5rem;
+}
+
+/* random color */
+
+
+.rand-color {
+  background: white;
+  padding: auto;
+  text-align: center;
+}
+span {
+  display: block;
+  padding: 0.5rem;
+  /* margin-bottom: 1rem; */
+  font-size: 1rem;
+  font-weight: normal;
+  
 }
